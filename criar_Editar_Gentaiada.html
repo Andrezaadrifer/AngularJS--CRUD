@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html ng-app ="GentaiadaModel" ng-controller="gentaiadaCtrl">
+<head>
+	<title>Criar / Editar Gentaiada</title>
+
+	<!-- Angular Material style sheet -->
+	<link rel="stylesheet" href="css/angular-material.min.css">
+
+	<meta charset="UTF-8">
+	<style>
+	div.container {
+		width: 100%;
+		border: 1px solid black;
+		background-color:
+	}
+
+	.selecionado {
+		background-color: gray;
+		color: white;
+	}
+</style>
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.0/angular-material.min.css">
+</head>
+<body>
+
+	{{''|ola}}
+
+	<br/>
+	<br/>
+	<hr>
+	<br/>
+
+	<button id="buttonGentaiada" ng-click="buttonGentaiada()" style="background-color:blue; color:white" type="button" disabled="">Gentaiada</button>
+
+	<md-button id="buttonCachorrada" ng-click="buttonCachorrada()" type="button" >Cachorrada</md-button>
+	<h3>Cadastro Gentaiada</h3>
+	<div class="container">
+		<form name="gentaiadaForm">
+			<p ng-show="!!gentaiada.cod">Código <input id="cod" type="text" title="código" ng-model="gentaiada.cod" disabled placeholder="código"></p>
+			<p ng-show="gentaiadaForm.$invalid">Digite Nome e Idade!</p>
+			<p>Nome do indivíduo <input  id="nome" type="text" title="digite o nome" ng-model="gentaiada.nome" name ="nome" ng-required="true" placeholder="Nome">
+				<span style="color:red;font-size: 12px;"" ng-show="gentaiadaForm.nome.$invalid">Digite o nome!</span>
+			</p>
+			<p>Quantos anos tem <input id="idade" type="number" title="digite a idade" ng-model="gentaiada.idade" name ="idade" ng-required="true" placeholder="idade">
+				<span style="color:red;font-size: 12px;" ng-show="gentaiadaForm.idade.$invalid">Digite o idade!</span>
+			</p>
+			<div>
+				<button id="button1" type="button" ng-click="buttonCancelar()" ng-disabled="gentaiadaForm.$invalid">Cancelar</button>
+				<button id="button2" type="button" ng-click="addGentaiada()" ng-disabled="gentaiadaForm.$invalid" style="background-color:blue; color:white" >Salvar</button>
+				<button id="button3" type="button" ng-disabled="gentaiadaForm.$invalid" ng-click="atualizarGentaiada(gentaiada, $index)" ng-show="atualizar" style="background-color:dodgerblue; color:white">Atualizar</button>
+				<!--ng-disabled="!gentaiada.nome || !gentaiada.idade" -- usava em cancelar e salvar!-->
+
+			</div>
+		</form>
+	</div>
+
+	<br>
+	<div ng-show="gentaiadas.length >0">
+		<h3>Listagem Gentaiada</h3>
+		<div class="container">
+			<table >
+				<tr>
+					<th></th>
+					<th>Código</th>
+					<th></th>
+					<th>Nome do indivíduo</th>
+					<th></th>
+					<th>Quantos anos tem</th>
+					<th></th>
+					<th><button type="button" ng-click="editarGentaiada(gentaiadas)" ng-disabled="!isSelected(gentaiadas) && !isUm(gentaiadas)">Editar</button></th>
+					<th><button style="background: red;" type="button" ng-click ="deletarGentaiada(gentaiadas)" ng-disabled="!isSelected(gentaiadas)">Deletar</button></th>
+				</tr>
+				<tr ng-repeat="gentaiada in gentaiadas">
+					<td><input ng-class="{selecionado:gentaiada.selecionado}" type="checkbox" name="teste" ng-value="gentaiada.nome" ng-model="gentaiada.selecionado"/></td>
+					<td>{{gentaiada.cod}} </td> 
+					<th></th>
+					<td>{{gentaiada.nome}}</td>
+					<th></th>
+					<td>{{gentaiada.idade}}</td>
+				</tr>
+			</table>
+
+		</div>
+	</div>
+
+	<!-- Angular Material requires Angular.js Libraries -->
+	<script src="js/angular.min.js"></script>
+	<script src="js/angular-animate.min.js"></script>
+	<script src="js/angular-aria.min.js"></script>
+	<script src="js/angular-messages.min.js"></script>
+
+	<!-- Angular Material Library -->
+	<script src="js/angular-material.min.js"></script>
+
+	
+	<script src="js/gentaiada.module.js"></script>
+
+	<!--Controllers!-->
+	<script src="js/gentaiadaController.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html ng-app ="CachorradaModel" ng-controller="cachorradaCtrl">
+<head>
+  <title>Criar / Editar Cachorrada</title>
+  <meta charset="UTF-8">
+  <style>
+  div.container {
+    width: 100%;
+    border: 1px solid black;
+    background-color:
+  }
+  .selecionado {
+    background-color: gray;
+    color: white;
+  }
+</style>
+</head>
+<body>
+
+  {{''|ola}}
+
+  <br/>
+  <br/>
+  <hr>
+  <br/>
+
+  <button id="buttonCachorrada" ng-click="buttonGentaiada()" type="button">Gentaiada</button>
+
+  <button id="buttonGentaiada" ng-click="buttonCachorrada()" style="background-color:blue; color:white " type="button" disabled="">Cachorrada</button>
+
+  <h3>Cadastro Cachorrada</h3>
+  <div class="container">
+    <form name="cachorradaForm">
+      <p ng-show="!!cachorrada.cod">Código <input id="cod" type="text" title="código" ng-model="cachorrada.cod" disabled placeholder="código"></p>
+      <p ng-show="cachorradaForm.$invalid">Digite Nome e Raça!</p>
+      Nome do indivíduo <input  id="nome" type="text" title="digite o nome" ng-model="cachorrada.nome" name ="nome" ng-required="true" placeholder="Nome"/>
+        <span  style="color:red;font-size: 12px;" ng-show="cachorradaForm.nome.$invalid">Digite o nome!</span>
+     
+      <p>Raça <input id="raca" type="text" title="digite a raça" ng-model="cachorrada.raca" name ="raca" ng-required="true" placeholder="raça">
+        <span style="color:red;font-size: 12px;" ng-show="cachorradaForm.raca.$invalid">Digite a raça!</span>
+      </p>
+      <div>
+        <button id="button1" type="button" ng-click="buttonCancelar()" ng-disabled="gentaiadaForm.$invalid">Cancelar</button>
+        <button id="button2" type="button" ng-click="addCachorrada()" ng-disabled="cachorradaForm.$invalid" style="background-color:blue; color:white" >Salvar</button>
+        <button id="button3" type="button" ng-click="atualizarCachorrada(cachorrada, $index)" ng-show="atualizar" ng-disabled="cachorradaForm.$invalid" style="background-color:dodgerblue; color:white">Atualizar</button>
+      </div>
+    </form>
+  </div>
+
+  <br>
+  <div ng-show="cachorradas.length >0">
+    <h3>Listagem Cachorrada</h3>
+    <div class="container">
+      <table >
+        <tr>
+          <th></th>
+          <th>Código</th>
+          <th></th>
+          <th>Nome do indivíduo</th>
+          <th></th>
+          <th>Raça</th>
+          <th></th>
+          <th><button type="button" ng-click ="editarCachorrada(cachorradas)" ng-disabled="!isSelected(cachorradas)">Editar</button></th>
+          <th><button style="background: red;" type="button" ng-click ="deletarCachorrada(cachorradas)" ng-disabled="!isSelected(cachorradas)">Deletar</button></th>
+        </tr>
+        <tr ng-class="{selecionado:cachorrada.selecionado}" ng-repeat="cachorrada in cachorradas">
+          <td><input type="checkbox" ng-model="cachorrada.selecionado"/></td>
+          <td>{{cachorrada.cod}} </td> 
+          <th></th>
+          <td>{{cachorrada.nome}}</td>
+          <th></th>
+          <td>{{cachorrada.raca}}</td>
+        </tr>
+      </table>
+
+    </div>
+  </div>
+
+
+  <script src="js/angular.min.js"></script>
+  <script src="js/cachorrada.module.js"></script>
+
+  <!--Controllers!-->
+  <script src="js/cachorradaController.js"></script>
+
+</body>
+</html>

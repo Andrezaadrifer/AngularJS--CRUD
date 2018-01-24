@@ -1,0 +1,119 @@
+<html lang="en" >
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Angular Material style sheet -->
+	<link rel="stylesheet" href="css/angular-material.min.css">
+	<title>Criar / Editar Gentaiada</title>
+</head>
+<body ng-app="app" ng-cloak>
+    <md-input-container>
+        <label>Agora vc escolhe : Pessoas ou Animais </label>
+      </md-input-container>
+
+
+	Agora vc escolhe : Pessoas ou Animais 
+	
+	<hr>
+
+	<md-button>Cachorrada</md-button>
+	
+	<md-button class="md-raised md-primary">Gentaiada</md-button>
+	<hr>
+
+	<md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+		<md-card-title>
+			<md-card-title-text>
+				<span class="md-headline">Cadastro Gentaiada</span>
+				<span class="md-subhead">Digite Nome e Raça!</span>
+                 <md-input-container class="md-block" flex-gt-sm>
+                    <label>Código</label>
+                    <input md-maxlength="30" required name="nome" ng-model="user.name" />
+                     <div ng-message="md-maxlength">o nome tem que ser até 30 characters.</div> 
+                 </md-input-container>
+                <md-input-container class="md-block" flex-gt-sm>
+                    <label>Nome do indivíduo</label>
+                    <input md-maxlength="30" required name="nome" ng-model="user.name" />
+                     <div ng-message="md-maxlength">o nome tem que ser até 30 characters.</div> 
+                </md-input-container>
+                 <md-input-container class="md-block" flex-gt-sm>
+                        <label>Quantos anos tem</label>
+                    <input md-maxlength="5" required name="45" ng-model="user" />
+                     <div ng-message="md-maxlength">o nome tem que ser até 5 characters.</div> 
+                    </md-input-container>
+			</md-card-title-text>
+		</md-card-title>
+		<md-card-actions layout="row" layout-align="left">
+			<md-button>Salvar</md-button>
+			<md-button class="md-raised md-primary md-hue-2">Cancelar</md-button>
+			<md-button class="md-raised md-primary md-hue-25">Atualizar</md-button>
+		</md-card-actions>
+	</md-card>
+
+    
+	<md-card md-theme="{{ showDarkTheme ? 'dark-grey' : 'default' }}" md-theme-watch>
+		<md-card-title>
+			<md-card-title-text>
+				<span class="md-headline">Listagem Gentaiada</span>
+               <div class="radioDemo2 bidi">
+                   <h2>Nome</h2>
+                    <h2>Idade</h2>
+                    <md-divider></md-divider>
+
+                    <md-radio-group ng-model="" >
+                      <div ng-repeat='' class="row">
+                        <div flex layout='row' layout-padding layout-align="start center" >
+
+                          <div flex style="max-width:200px;">
+                            Código
+                          </div>
+                          <md-radio-button flex
+                              ng-value=""
+                              class="md-primary" >
+
+                            {{person.fullName}}
+
+                          </md-radio-button>
+
+                        </div>
+                      </div>
+                    </md-radio-group>
+
+                    <md-divider></md-divider>
+                    <div class="summary" flex layout="row" layout-align="space-between center">
+                      <div flex-initial>
+                        <span class="title">Selected User</span>: <span class="md-checked">{{cc.selectedUser()}}</span>
+                      </div>
+                    </div>
+                </div>
+                
+                
+			</md-card-title-text>
+		</md-card-title>
+		
+	</md-card>
+
+    
+	<!-- Angular Material requires Angular.js Libraries -->
+	<script src="js/angular.min.js"></script>
+	<script src="js/angular-animate.min.js"></script>
+	<script src="js/angular-aria.min.js"></script>
+	<script src="js/angular-messages.min.js"></script>
+
+	<!-- Angular Material Library -->
+	<script src="js/angular-material.min.js"></script>
+
+	<!-- Your application bootstrap  -->
+	<script type="text/javascript">    
+	/**
+	* You must include the dependency on 'ngMaterial' 
+	*/
+	var app=angular.module('app', ['ngMaterial']);
+
+	app.controller('AppCtrl', function() {
+		this.myDate = new Date();
+		this.isOpen = false;
+	});
+</script>
+
+</body>
+</html>
